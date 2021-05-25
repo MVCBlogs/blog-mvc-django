@@ -1,0 +1,58 @@
+{%extends 'layouts/master.html'%}
+
+{%block title%}{{data.title}}{%endblock%}
+{%block description%}{{data.description}}{%endblock%}
+
+{%block content%}
+<!-- All Post(s) -->
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+     
+      {% for post in data.posts %}
+        <div class="post-preview">
+            <h2 class="post-title">
+              <a href="{% url 'posts.show' post.getId %}"> {{ post.getTitle }}</a>
+            </h2>
+          <h3 class="post-subtitle font-300">
+            {{ post.getDescription }}
+          </h3>
+          <p class="post-meta">Posted by
+            <span class="font-bold">Admin</span>
+            on {{post.getDate}}</p>
+        </div>
+        <hr>
+      {%endfor%}
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+      {% if messages %}
+        {% for result in messages%}
+          <b style="color: green;">{{result}}</b>
+        {% endfor %}
+      {% endif%}
+      <div class="card">
+        <div class="card-header">
+          Create a new post
+        </div>
+        <div class="card-body">
+          <form method="POST" action="{% url 'posts.save' %}">
+            {%csrf_token%}
+            <div class="form-group">
+              <label>Post title:</label>
+              <input type="text" name="title" class="form-control" value="{{ data.posts.getTitle }}" placeholder="Enter title" autocomplete="off">
+            </div>
+            <div class="form-group">
+              <label>Post description:</label>
+              <textarea class="form-control" name="description" value="{{ data.posts.getDescripton }}" rows="3" placeholder="Enter description" autocomplete="off"></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+{%endblock%}

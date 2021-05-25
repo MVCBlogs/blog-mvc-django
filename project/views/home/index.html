@@ -1,0 +1,18 @@
+{%extends 'layouts/master.html'%}
+
+{%block title%} {{data.title}} {%endblock%}
+{%block description%} {{data.description}} {%endblock%}
+
+{%block content%}
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <p>Navigate to the <b><a href="{% url 'posts.list'%}">posts section</a></b> to check the latest posts.
+        </p>
+      </div>
+    </div>
+  </div>
+{%endblock%}
+
+
+
