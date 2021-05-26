@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from project.Models.Post import Post
-from project.Models.Comment import Comment
+from blog.Models.Post import Post
+from blog.Models.Comment import Comment
 from django.contrib import messages
 
 

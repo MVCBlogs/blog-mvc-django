@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "bootstrap5",
-    "project",
+    "blog",
 ]
 
 MIDDLEWARE = [
@@ -56,7 +56,7 @@ ROOT_URLCONF = "blog_mvc_django.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": ["project/views/"],
+        "DIRS": ["blog/views/"],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -78,7 +78,7 @@ WSGI_APPLICATION = "blog_mvc_django.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "djangoposts",
+        "NAME": "blog_django",
         "USER": "root",
         "PASSWORD": "",
         "HOST": "localhost",
@@ -123,9 +123,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = "project/static/"
+STATIC_URL = "blog/static/"
 
-STATICFILES_DIRS = (BASE_DIR, "project/static")
+STATICFILES_DIRS = (BASE_DIR, "blog/static")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

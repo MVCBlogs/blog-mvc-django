@@ -29,7 +29,7 @@ class Migration(migrations.Migration):
                 (
                     "post_id",
                     models.ForeignKey(
-                        on_delete=django.db.models.deletion.CASCADE, to="project.post"
+                        on_delete=django.db.models.deletion.CASCADE, to="blog.post"
                     ),
                 ),
             ],

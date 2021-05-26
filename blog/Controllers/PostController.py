@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
-from project.Models.Post import Post
-from project.Models.Comment import Comment
+from blog.Models.Post import Post
+from blog.Models.Comment import Comment
 from django.contrib import messages
 from django.http import Http404
 from django.urls import reverse
