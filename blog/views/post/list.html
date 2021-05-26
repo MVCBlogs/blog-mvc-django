@@ -1,9 +1,9 @@
-{%extends 'layouts/master.html'%}
+{% extends 'layouts/master.html' %}
 
-{%block title%}{{data.title}}{%endblock%}
-{%block description%}{{data.description}}{%endblock%}
+{% block title %}{{ data.title }}{% endblock %}
+{% block description %}{{ data.description }}{% endblock %}
 
-{%block content%}
+{% block content %}
 <!-- All Post(s) -->
 <div class="container">
   <div class="row">
@@ -19,27 +19,27 @@
           </h3>
           <p class="post-meta">Posted by
             <span class="font-bold">Admin</span>
-            on {{post.getDate}}</p>
+            on {{ post.getDate }}</p>
         </div>
         <hr>
-      {%endfor%}
+      {% endfor %}
     </div>
   </div>
 
   <div class="row">
     <div class="col-lg-8 col-md-10 mx-auto">
       {% if messages %}
-        {% for result in messages%}
-          <b style="color: green;">{{result}}</b>
+        {% for result in messages %}
+          <b style="color: green;">{{ result }}</b>
         {% endfor %}
-      {% endif%}
+      {% endif %}
       <div class="card">
         <div class="card-header">
           Create a new post
         </div>
         <div class="card-body">
           <form method="POST" action="{% url 'posts.save' %}">
-            {%csrf_token%}
+            {% csrf_token %}
             <div class="form-group">
               <label>Post title:</label>
               <input type="text" name="title" class="form-control" value="{{ data.posts.getTitle }}" placeholder="Enter title" autocomplete="off">
@@ -55,4 +55,4 @@
     </div>
   </div>
   
-{%endblock%}
+{% endblock %}

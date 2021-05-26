@@ -1,6 +1,5 @@
 from django.db import models
-from django.urls import reverse
-
+from django.core.exceptions import ValidationError
 
 class Post(models.Model):
     id = models.BigAutoField(primary_key=True)
@@ -20,18 +19,18 @@ class Post(models.Model):
     def getDate(self):
         return self.date
 
-    def setId(self, idPost):
-        return self.id == idPost
+    def setId(self, id):
+        self.id = id
 
-    def setTitle(self, titlePost):
-        return self.title == titlePost
+    def setTitle(self, title):
+        self.title = title
 
-    def setDescription(self, descriptionPost):
-        return self.description == descriptionPost
+    def setDescription(self, description):
+        self.description = description
 
-    def setDate(self, datePost):
-        return self.date == datePost
+    def setDate(self, date):
+        self.date = date
 
-
-def get_absolute_url(self):
-    return reverse("posts/", kwargs={"id": self.id})
+    def clean(self):
+        if not self.title or not self.description:
+            raise ValidationError("Title or description cannot be empty")

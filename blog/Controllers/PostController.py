@@ -1,12 +1,7 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse, HttpResponseRedirect
 from blog.Models.Post import Post
 from blog.Models.Comment import Comment
 from django.contrib import messages
-from django.http import Http404
-from django.urls import reverse
-from django.shortcuts import get_object_or_404
-
 
 def list(request):
     data = {}
@@ -15,48 +10,42 @@ def list(request):
     data["posts"] = Post.objects.all()
     return render(request, "post/list.html", {"data": data})
 
-
 def show(request, id):
-    # Pendiente por modificar
     data = {}
     post = Post.objects.get(id=id)
-    comments = Comment.objects.filter(postReference_id=id)
 
     data["title"] = post.getTitle
     data["description"] = post.getDescription
     data["post"] = post
-    data["comments"] = comments
 
     return render(request, "post/show.html", {"data": data})
 
-
 def save(request):
     if request.method == "POST":
-        if request.POST.get("title") and request.POST.get("description"):
-            newPost = Post()
-            newPost.title = request.POST.get("title")
-            newPost.description = request.POST.get("description")
-            newPost.save()
-            messages.success(request, "Post created sucessfully!")
-            return redirect("/posts")
+        newPost = Post()
+        newPost.setTitle(request.POST.get("title"))
+        newPost.setDescription(request.POST.get("description"))
+        newPost.clean()
+        newPost.save()
+        messages.success(request, "Post created sucessfully!")
+        return redirect("/posts")
     else:
         return redirect("/posts")
-
 
 def saveComment(request):
     if request.method == "POST":
-        if request.POST.get("message") and request.POST.get("postReference_id"):
-            newComment = Comment()
-            newComment.postReference = request.POST.get("postReference_id")
-            newComment.message = request.POST.get("message")
-            newComment.save()
-            messages.success(request, "Comment created successfully!")
-            return redirect("/posts")
-    else:
-        return redirect("/posts")
+        post = Post.objects.get(id=request.POST.get("post_id"))
+        newComment = Comment()
+        newComment.post = post
+        newComment.setMessage(request.POST.get("message"))
+        newComment.clean()
+        newComment.save()
+        messages.success(request, "Comment created successfully!")
+    return redirect("/posts/"+request.POST.get("post_id"))
 
-
-def deleteComment(request, id):
-    comments = Comment.objects.get(id=id)
+def deleteComment(request):
+    comment_id = request.POST.get("comment_id")
+    post_id = request.POST.get("post_id")
+    comments = Comment.objects.get(id=comment_id)
     comments.delete()
-    return redirect("/")
+    return redirect("/posts/"+post_id)

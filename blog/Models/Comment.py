@@ -1,17 +1,14 @@
 from django.db import models
-
+from django.core.exceptions import ValidationError
 
 class Comment(models.Model):
     id = models.BigAutoField(primary_key=True)
-    postReference = models.ForeignKey("Post", on_delete=models.CASCADE)
     message = models.CharField(max_length=110)
     date = models.DateTimeField(auto_now_add=True)
+    post = models.ForeignKey("Post", on_delete=models.CASCADE, related_name='comments')
 
     def getId(self):
         return self.id
-
-    def getPostId(self):
-        return self.postReference
 
     def getMessage(self):
         return self.message
@@ -19,14 +16,21 @@ class Comment(models.Model):
     def getDate(self):
         return self.date
 
-    def setId(self, id):
-        return self.id == id
+    def getPostId(self):
+        return self.post_id
 
-    def setPostId(self, post):
-        return self.post == post
+    def setId(self, id):
+        self.id = id
 
     def setMessage(self, message):
-        return self.message == message
+        self.message = message
 
     def setDate(self, date):
-        return self.date == date
+        self.date = date
+
+    def setPostId(self, post_id):
+        self.post_id = post_id
+
+    def clean(self):
+        if not self.message:
+            raise ValidationError("Message cannot be empty")
