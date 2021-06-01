@@ -40,31 +40,26 @@
  </nav>
 
   <!-- Page Header-->
-    <header class="masthead" style="background-image: url('{%static 'assets/img/home-bg.jpg'%}')">
-      <div class="overlay"></div>
-        <div class="container">
-          <div class="row">
-             <div class="col-lg-8 col-md-10 mx-auto">
-                <div class="site-heading">
-                    <h1><b>{%block title%} Blog - Django {%endblock%}</b></h1>
-                    <span class="subheading"> {%block description%} A clean blog with a MVC architecture in Django {%endblock%}</span>
-                </div>
+  <header class="masthead" style="background-image: url('{%static 'assets/img/home-bg.jpg' %}')">
+    <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+              <div class="site-heading">
+                  <h1><b>{%block title%} Blog - Django {%endblock%}</b></h1>
+                  <span class="subheading"> {%block description%} A clean blog with a MVC architecture in Django {%endblock%}</span>
               </div>
-           </div>
-        </div>
-    </header>
+            </div>
+          </div>
+      </div>
+  </header>
 
-
-    <!-- Main Content-->
-      <div class="container"> 
-         <div class="row">
-             <div class="col-lg-8 col-md-10 mx-auto">
-                 {%block content%}
-                  {%endblock%}
-             </div>
-        </div>
-     </div>
-     <hr>
+  <!-- Main Content-->
+  <div class="container"> 
+    {%block content%} {%endblock%}
+  </div>
+  
+  <hr>
         
   <!-- Footer -->
   <footer>
@@ -87,9 +82,9 @@
     </div>
   </footer>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="{%static 'assets/js/jquery.min.js' %}"></script>
-    <script src="{%static  'assets/js/bootstrap.bundle.min.js' %}"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script src="{%static 'assets/js/jquery.min.js' %}"></script>
+  <script src="{%static  'assets/js/bootstrap.bundle.min.js' %}"></script>
 </body>
 </html>
 
