@@ -4,7 +4,8 @@ from django.core.exceptions import ValidationError
 class Comment(models.Model):
     id = models.BigAutoField(primary_key=True)
     message = models.CharField(max_length=110)
-    date = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     post = models.ForeignKey("Post", on_delete=models.CASCADE, related_name='comments')
 
     def getId(self):
@@ -13,8 +14,11 @@ class Comment(models.Model):
     def getMessage(self):
         return self.message
 
-    def getDate(self):
-        return self.date
+    def getCreatedAt(self):
+        return self.created_at
+
+    def getUpdatedAt(self):
+        return self.updated_at
 
     def getPostId(self):
         return self.post_id
@@ -25,8 +29,11 @@ class Comment(models.Model):
     def setMessage(self, message):
         self.message = message
 
-    def setDate(self, date):
-        self.date = date
+    def setCreatedAt(self, created_at):
+        self.created_at = created_at
+
+    def setUpdatedAt(self, updated_at):
+        self.updated_at = updated_at
 
     def setPostId(self, post_id):
         self.post_id = post_id

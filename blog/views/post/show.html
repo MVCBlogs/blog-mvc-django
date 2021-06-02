@@ -13,7 +13,7 @@
             </h2>
             <p class="post-meta">Posted by
                 <span class="font-bold">Admin</span>
-                 on {{ data.post.getDate }}</p>
+                 on {{ data.post.getCreatedAt }}</p>
             <p class="post-subtitle font-300">
               {{ data.description }}
             </p>
@@ -27,7 +27,7 @@
         <h2 class="post-title">Comments</h2>
         <ul>
             {% for comment in data.post.comments.all %}
-              <li>{{ comment.getMessage }} - {{ comment.getDate }}
+              <li>{{ comment.getMessage }} - {{ comment.getCreatedAt }}
                 <form method="POST" action="{% url 'posts.deleteComment' %}">
                   {% csrf_token %}
                   <input type="hidden" name="comment_id" value="{{ comment.getId }}" />
