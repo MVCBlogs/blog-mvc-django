@@ -1,5 +1,6 @@
 from django.urls import path
-from .Controllers import HomeController, PostController
+from .Controllers.HomeController import HomeController
+from .Controllers.PostController import PostController
 
 urlpatterns = [
     path("", HomeController.index, name="home.index"),
