@@ -8,8 +8,8 @@ urlpatterns = [
     path("posts/", PostController.list, name="posts.list"),
     path("posts/save", PostController.save, name="posts.save"),
     path("posts/saveComment", PostController.saveComment, name="posts.saveComment"),
-    path("posts/<int:id>", PostController.show, name="posts.show"),
+    path("posts/<int:postid>", PostController.show, name="posts.show"),
     path(
-        "posts/deleteComment/", PostController.deleteComment, name="posts.deleteComment"
+        "posts/deleteComment/<int:commentid>", PostController.deleteComment, name="posts.deleteComment"
     ),
 ]

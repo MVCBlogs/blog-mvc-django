@@ -12,9 +12,9 @@ class PostController:
         return render(request, "post/list.html", {"data": data})
 
     @staticmethod
-    def show(request, id):
+    def show(request, postid):
         data = {}
-        post = Post.objects.get(id=id)
+        post = Post.objects.get(id=postid)
         data["title"] = post.getTitle()
         data["description"] = post.getDescription()
         data["post"] = post
@@ -45,9 +45,8 @@ class PostController:
         return redirect("/posts/"+post_id)
 
     @staticmethod
-    def deleteComment(request):
-        comment_id = request.POST.get("comment_id")
+    def deleteComment(request, commentid):
         post_id = request.POST.get("post_id")
-        comments = Comment.objects.get(id=comment_id)
+        comments = Comment.objects.get(id=commentid)
         comments.delete()
         return redirect("/posts/"+post_id)
