@@ -46,11 +46,6 @@
 
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-        {% if messages %}
-        {% for result in messages %}
-          <b style="color: green;">{{ result }}</b>
-        {% endfor %}
-      {% endif %}
         <div class="card">
           <div class="card-header">
             Create a new comment
@@ -60,7 +55,7 @@
               {% csrf_token %}
               <div class="form-group">
                 <label>Comment message:</label>
-                <textarea class="form-control" name="message" value="{{ Comment.getMessage }}" rows="3" placeholder="Enter message" autocomplete="off"></textarea>
+                <textarea class="form-control" name="message" rows="3" placeholder="Enter message"></textarea>
               </div>
               <input type="hidden" name="post_id" value="{{ data.post.getId }}" />
               <button type="submit" class="btn btn-primary">Submit</button>

@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from blog.Models.Post import Post
 from blog.Models.Comment import Comment
-from django.contrib import messages
 
 class PostController:
     @staticmethod
@@ -16,11 +15,9 @@ class PostController:
     def show(request, id):
         data = {}
         post = Post.objects.get(id=id)
-
-        data["title"] = post.getTitle
-        data["description"] = post.getDescription
+        data["title"] = post.getTitle()
+        data["description"] = post.getDescription()
         data["post"] = post
-
         return render(request, "post/show.html", {"data": data})
 
     @staticmethod
@@ -31,7 +28,6 @@ class PostController:
             newPost.setDescription(request.POST.get("description"))
             newPost.clean()
             newPost.save()
-            messages.success(request, "Post created sucessfully!")
             return redirect("/posts")
         else:
             return redirect("/posts")
@@ -40,13 +36,13 @@ class PostController:
     def saveComment(request):
         if request.method == "POST":
             post = Post.objects.get(id=request.POST.get("post_id"))
+            post_id = request.POST.get("post_id")
             newComment = Comment()
             newComment.post = post
             newComment.setMessage(request.POST.get("message"))
             newComment.clean()
             newComment.save()
-            messages.success(request, "Comment created successfully!")
-        return redirect("/posts/"+request.POST.get("post_id"))
+        return redirect("/posts/"+post_id)
 
     @staticmethod
     def deleteComment(request):

@@ -28,11 +28,6 @@
 
   <div class="row">
     <div class="col-lg-8 col-md-10 mx-auto">
-      {% if messages %}
-        {% for result in messages %}
-          <b style="color: green;">{{ result }}</b>
-        {% endfor %}
-      {% endif %}
       <div class="card">
         <div class="card-header">
           Create a new post
@@ -42,11 +37,11 @@
             {% csrf_token %}
             <div class="form-group">
               <label>Post title:</label>
-              <input type="text" name="title" class="form-control" value="{{ data.posts.getTitle }}" placeholder="Enter title" autocomplete="off">
+              <input type="text" name="title" class="form-control" placeholder="Enter title">
             </div>
             <div class="form-group">
               <label>Post description:</label>
-              <textarea class="form-control" name="description" value="{{ data.posts.getDescripton }}" rows="3" placeholder="Enter description" autocomplete="off"></textarea>
+              <textarea class="form-control" name="description" rows="3" placeholder="Enter description"></textarea>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
           </form>
