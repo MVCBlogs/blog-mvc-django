@@ -1,2 +1,13 @@
 __pycache__/
 *.pyc
+pyvenv.cfg
+
+# virtualenv generated files #
+##############################
+Scripts
+Lib
+Include
+
+# virtualenv folders #
+######################
+env
